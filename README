@@ -1,0 +1,1 @@
+This is a simple extension that backs up existing values of the home page, keyword search prefs, and then resets them to their default values. It also resets the current search engine to the original default engine, and then uninstalls itself.
