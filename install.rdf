@@ -1,0 +1,19 @@
+
+<?xml version="1.0"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+    <Description about="urn:mozilla:install-manifest">
+        <em:id>prefreset@gavinsharp.com</em:id>
+        <em:type>2</em:type>
+        <em:name>PrefReset</em:name>
+        <em:version>0.1</em:version>
+        <em:bootstrap>true</em:bootstrap>
+        <em:creator>Gavin Sharp</em:creator>
+        <em:targetApplication>
+            <Description>
+                <em:id>{a23983c0-fd0e-11dc-95ff-0800200c9a66}</em:id>
+                <em:minVersion>4.0</em:minVersion>
+                <em:maxVersion>13.*</em:maxVersion>
+            </Description>
+        </em:targetApplication>
+    </Description>
+</RDF>
