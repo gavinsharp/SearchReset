@@ -1,12 +1,11 @@
-var Cc = Components.classes;
-var Ci = Components.interfaces;
 var Cu = Components.utils;
 
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/AddonManager.jsm");
 
 function startup(aData, aReason) {
-  // Reset the home page and keyword.URL
+  // Helper function that backs up and then clears a pref, if it has a user-set
+  // value.
   function resetPref(prefName) {
     if (Services.prefs.prefHasUserValue(prefName)) {
       var existingValue = Services.prefs.getCharPref(prefName);
@@ -15,13 +14,17 @@ function startup(aData, aReason) {
       Services.prefs.clearUserPref(prefName);
     }
   }
+
+  // Reset the home page and keyword.URL
   resetPref("browser.startup.homepage");
   resetPref("keyword.URL");
 
   // Now also reset the default search engine
+  resetPref("browser.search.defaultenginename");
   let originalDefaultEngine = Services.search.originalDefaultEngine;
   originalDefaultEngine.hidden = false;
   Services.search.currentEngine = originalDefaultEngine;
+  Services.search.moveEngine(originalDefaultEngine, 0);
 
   // Flush changes to disk
   Services.prefs.savePrefFile(null);
