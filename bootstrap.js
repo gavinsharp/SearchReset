@@ -23,6 +23,9 @@ function startup(aData, aReason) {
   resetPref("browser.startup.homepage");
   resetPref("keyword.URL");
 
+  // Reset the New Tab Page
+  resetPref("browser.newtab.url");
+
   // Now also reset the default search engine
   resetPref("browser.search.defaultenginename");
   let originalDefaultEngine = Services.search.originalDefaultEngine;
