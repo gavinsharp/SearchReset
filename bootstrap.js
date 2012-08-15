@@ -36,6 +36,23 @@ function startup(aData, aReason) {
   // Flush changes to disk
   Services.prefs.savePrefFile(null);
 
+  // reset the search engine used on the about:home page
+  // code reused from AboutHomeUtils
+  // http://mxr.mozilla.org/mozilla-central/source/browser/components/nsBrowserContentHandler.js#838
+  let defaultEngine = Services.search.originalDefaultEngine;
+  let submission = defaultEngine.getSubmission("_searchTerms_");
+  let engine = {name: defaultEngine.name, searchUrl: submission.uri.spec};
+  let aboutHomeURI = Services.io.newURI("moz-safe-about:home", null, null);
+
+	try {
+	let ssm = Components.classes["@mozilla.org/scriptsecuritymanager;1"].getService(Components.interfaces.nsIScriptSecurityManager);
+  let principal = (ssm.getCodebasePrincipal || ssm.getNoAppCodebasePrincipal)(aboutHomeURI);
+
+  let dsm = Components.classes["@mozilla.org/dom/storagemanager;1"].getService(Components.interfaces.nsIDOMStorageManager);
+
+	dsm.getLocalStorageForPrincipal(principal, "").setItem("search-engine", JSON.stringify(engine));
+	} catch(e) { Services.prompt.alert(null, e, "Error resetting about:home"); }
+
   // auto-uninstall after running
   AddonManager.getAddonByID(aData.id, function(addon) {
     addon.uninstall();
