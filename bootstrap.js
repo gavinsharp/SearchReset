@@ -25,6 +25,7 @@ function startup(aData, aReason) {
 
   // Reset the New Tab Page
   resetPref("browser.newtab.url");
+  resetPref("browser.newtabpage.enabled");
 
   // Now also reset the default search engine
   resetPref("browser.search.defaultenginename");
