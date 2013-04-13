@@ -4,7 +4,7 @@
         <em:id>searchreset@gavinsharp.com</em:id>
         <em:type>2</em:type>
         <em:name>SearchReset</em:name>
-        <em:version>0.2</em:version>
+        <em:version>0.3</em:version>
         <em:bootstrap>true</em:bootstrap>
         <em:creator>Gavin Sharp</em:creator>
         <em:targetApplication>
