@@ -33,7 +33,7 @@ function startup(aData, aReason) {
 
   // Reset the New Tab Page
   resetPref("browser.newtab.url");
-
+ 
   // Now also reset the default search engine
   // To be compatible with all versions before/after bug 738818, get the default
   // defaultenginename pref value manually.
